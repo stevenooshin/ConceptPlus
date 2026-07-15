@@ -27,12 +27,13 @@
    Single self-contained file. No build step, no libraries.
    Rename to index.html and drop into GitHub Pages to go live.
 
-   FILES THIS PAGE EXPECTS (all optional — nothing breaks if missing):
-     media/hero.gif                      ← hero background, plays on load
-     media/idea-01-concept-film.mp4      ← 4 idea loops
-     media/idea-02-the-door.mp4
-     media/idea-03-sketch-to-world.mp4
-     media/idea-04-house-and-home.mp4
+   FILES THIS PAGE EXPECTS — all sitting FLAT next to index.html,
+   no folder. Names must match exactly:
+     hero.mp4                            ← hero background, plays on load
+     mediaidea-01-concept-film.mp4       ← the 4 idea loops
+     mediaidea-02-the-door.mp4
+     mediaidea-03-sketch-to-world.mp4
+     mediaidea-04-house-and-home.mp4
 
    HOW THIS FILE IS ORGANISED
      1. TOKENS      — colors, fonts, easing. Edit brand here only.
@@ -147,7 +148,7 @@ img,video{display:block;max-width:100%}
 /* ============================================================
    4. HERO
    Layer order, back to front:
-     1. media/hero.gif        — full-bleed, plays immediately
+     1. hero.mp4              — full-bleed, autoplays muted on load
      2. scrim                 — dark gradient so type stays legible
      3. copper glow + beam    — the brand signature
      4. type
@@ -489,10 +490,12 @@ img,video{display:block;max-width:100%}
 
 
 <!-- ============================================================
-     HERO — media/hero.gif is the first thing they see
+     HERO — hero.mp4 is the first thing they see
      ============================================================ -->
 <section class="hero">
-  <img class="hero-media" src="media/hero.gif" alt="" aria-hidden="true">
+  <video class="hero-media" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+    <source src="hero.mp4" type="video/mp4">
+  </video>
   <div class="hero-scrim"></div>
 
   <div class="hero-inner">
@@ -510,13 +513,12 @@ img,video{display:block;max-width:100%}
 <!-- ============================================================
      IDEAS — 4 DIRECTIONS
      ------------------------------------------------------------
-     ▶ LOOPS GO IN /media NEXT TO THIS FILE:
-         media/idea-01-concept-film.mp4
-         media/idea-02-the-door.mp4
-         media/idea-03-sketch-to-world.mp4
-         media/idea-04-house-and-home.mp4
+     ▶ LOOPS SIT FLAT NEXT TO THIS FILE (no folder):
+         mediaidea-01-concept-film.mp4
+         mediaidea-02-the-door.mp4
+         mediaidea-03-sketch-to-world.mp4
+         mediaidea-04-house-and-home.mp4
      SPEC: 1920×1080, 6–12s seamless loop, NO AUDIO, H.264, under ~4 MB.
-     Optional poster stills, same names with .jpg
      ============================================================ -->
 <section class="section" id="ideas">
   <div class="sec-head">
@@ -535,9 +537,9 @@ img,video{display:block;max-width:100%}
         <p class="r-desc">A cinematic presentation of the holding itself — who Concept Plus is, what it does, and the vision behind it. From a blank page to a group with seven engines: development, real estate, marketing, media, hospitality, art, academy. Each one earns its moment on screen, all of it orchestrated from one core. Projects like Oystra appear as proof of the system — not the subject. Two to three minutes, narrated, graded matte and filmic. Never plastic, never "AI-made."</p>
       </div>
       <div class="r-media">
-        <div class="r-slot"><code>media/idea-01-concept-film.mp4</code></div>
-        <video autoplay muted loop playsinline preload="metadata" poster="media/idea-01-concept-film.jpg">
-          <source src="media/idea-01-concept-film.mp4" type="video/mp4">
+        <div class="r-slot"><code>mediaidea-01-concept-film.mp4</code></div>
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="mediaidea-01-concept-film.mp4" type="video/mp4">
         </video>
         <span class="r-flag"><b>Look reference</b></span>
       </div>
@@ -552,9 +554,9 @@ img,video{display:block;max-width:100%}
         <p class="r-desc">One door standing in the void, then in nature — no walls, pure concept. Each time it opens, a different world Concept Plus builds: development, hospitality, art, the academy. Abstract, timeless, made to loop for years without ageing. CGI-grade — fully AI, or finished in 3D.</p>
       </div>
       <div class="r-media">
-        <div class="r-slot"><code>media/idea-02-the-door.mp4</code></div>
-        <video autoplay muted loop playsinline preload="metadata" poster="media/idea-02-the-door.jpg">
-          <source src="media/idea-02-the-door.mp4" type="video/mp4">
+        <div class="r-slot"><code>mediaidea-02-the-door.mp4</code></div>
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="mediaidea-02-the-door.mp4" type="video/mp4">
         </video>
         <span class="r-flag"><b>Look reference</b></span>
       </div>
@@ -569,9 +571,9 @@ img,video{display:block;max-width:100%}
         <p class="r-desc">The most visual of the four — no story to follow, just transformation you can't look away from. A single line mutates: into soft-body 3D form, into structure, into a lived space. Material shifts, light shifts, scale shifts. Bold Apple-grade type lands each service on the beat. Pure motion craft — orchestration, made visible.</p>
       </div>
       <div class="r-media">
-        <div class="r-slot"><code>media/idea-03-sketch-to-world.mp4</code></div>
-        <video autoplay muted loop playsinline preload="metadata" poster="media/idea-03-sketch-to-world.jpg">
-          <source src="media/idea-03-sketch-to-world.mp4" type="video/mp4">
+        <div class="r-slot"><code>mediaidea-03-sketch-to-world.mp4</code></div>
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="mediaidea-03-sketch-to-world.mp4" type="video/mp4">
         </video>
         <span class="r-flag"><b>Look reference</b></span>
       </div>
@@ -586,9 +588,9 @@ img,video{display:block;max-width:100%}
         <p class="r-desc">The feeling of House of CP, on film. We start close — materials, texture, finish: stone, bronze, warm light, the details that separate a real space from a rendered one. Then the finished project. Then the people, and the room comes alive. As the camera travels, each service switches on a zone — development raises it, design dresses it, hospitality warms it, the academy trains the person who greets you. This one isn't about explaining. It's about how the place makes you feel.<span class="r-split">Runs as one cinematic — or splits into a venue film + a living film.</span></p>
       </div>
       <div class="r-media">
-        <div class="r-slot"><code>media/idea-04-house-and-home.mp4</code></div>
-        <video autoplay muted loop playsinline preload="metadata" poster="media/idea-04-house-and-home.jpg">
-          <source src="media/idea-04-house-and-home.mp4" type="video/mp4">
+        <div class="r-slot"><code>mediaidea-04-house-and-home.mp4</code></div>
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="mediaidea-04-house-and-home.mp4" type="video/mp4">
         </video>
         <span class="r-flag"><b>Look reference</b></span>
       </div>
@@ -637,8 +639,7 @@ img,video{display:block;max-width:100%}
     <div class="who-line"><b>Steve Nooshinfar</b> — Creative Director · Film, Motion &amp; 3D</div>
     <div class="cta">
       <a class="primary" href="https://wa.me/971562450103" target="_blank" rel="noopener">WhatsApp&nbsp;→ +971 56 245 0103</a>
-      <!-- VERIFY this address before sending -->
-      <a href="mailto:Steve.nooshionfar@gmail.com">Email&nbsp;→ Steve.nooshionfar@gmail.com</a>
+      <a href="mailto:Steve.nooshinfar@gmail.com">Email&nbsp;→ Steve.nooshinfar@gmail.com</a>
     </div>
   </div>
 </section>
