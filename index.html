@@ -25,14 +25,21 @@
    by Steve Nooshinfar
    ------------------------------------------------------------
    Single self-contained file. No build step, no libraries.
-   Double-click to open, or drop into GitHub Pages as index.html.
+   Rename to index.html and drop into GitHub Pages to go live.
+
+   FILES THIS PAGE EXPECTS (all optional — nothing breaks if missing):
+     media/hero.gif                      ← hero background, plays on load
+     media/idea-01-concept-film.mp4      ← 4 idea loops
+     media/idea-02-the-door.mp4
+     media/idea-03-sketch-to-world.mp4
+     media/idea-04-house-and-home.mp4
 
    HOW THIS FILE IS ORGANISED
      1. TOKENS      — colors, fonts, easing. Edit brand here only.
      2. BASE        — reset + typography defaults
      3. HEADER
-     4. HERO
-     5. IDEAS       — the 4 directions (with .mp4 loop holders)
+     4. HERO        — hero.gif background
+     5. IDEAS       — the 4 directions + closing note
      6. WHO         — Steve credibility band
      7. SHOWCASE    — video reel (data lives in JS at the bottom)
      8. CONTACT + FOOTER
@@ -139,66 +146,88 @@ img,video{display:block;max-width:100%}
 
 /* ============================================================
    4. HERO
-   Signature = the copper light beam + ambient glow in negative space.
+   Layer order, back to front:
+     1. media/hero.gif        — full-bleed, plays immediately
+     2. scrim                 — dark gradient so type stays legible
+     3. copper glow + beam    — the brand signature
+     4. type
    ============================================================ */
 .hero{
   position:relative;min-height:100svh;   /* svh = correct on mobile browsers */
   display:flex;flex-direction:column;justify-content:flex-end;
   padding:0 var(--pad) clamp(48px,9vh,110px);
   overflow:hidden;
+  background:var(--ink);
 }
-/* ambient copper light, slow drift */
-.hero::before{
-  content:"";position:absolute;inset:0;z-index:0;
+
+/* --- 1. the hero film --- */
+.hero-media{
+  position:absolute;inset:0;z-index:0;
+  width:100%;height:100%;object-fit:cover;
+  opacity:.85;
+}
+
+/* --- 2. scrim: keeps the headline readable over any footage --- */
+.hero-scrim{
+  position:absolute;inset:0;z-index:1;
   background:
-    radial-gradient(60% 50% at 78% 18%,rgba(194,133,74,.16),transparent 60%),
+    linear-gradient(to top, rgba(11,11,12,.96) 0%, rgba(11,11,12,.55) 42%, rgba(11,11,12,.25) 70%, rgba(11,11,12,.5) 100%),
+    linear-gradient(to right, rgba(11,11,12,.7) 0%, transparent 55%);
+}
+
+/* --- 3. copper glow, slow drift --- */
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    radial-gradient(60% 50% at 78% 18%,rgba(194,133,74,.14),transparent 60%),
     radial-gradient(40% 40% at 20% 90%,rgba(194,133,74,.05),transparent 70%);
   animation:drift 22s var(--ease) infinite alternate;
+  mix-blend-mode:screen;
 }
 /* the 1px vertical beam — the restraint motif */
 .hero::after{
-  content:"";position:absolute;top:0;right:14%;width:1px;height:100%;z-index:0;
+  content:"";position:absolute;top:0;right:14%;width:1px;height:100%;z-index:2;pointer-events:none;
   background:linear-gradient(to bottom,transparent,rgba(194,133,74,.5),transparent);
   opacity:.4;
 }
 @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-4%,3%,0) scale(1.08)}}
 
-.hero-inner{position:relative;z-index:2;max-width:var(--max)}
-.hero .eyebrow{margin-bottom:24px;opacity:0;animation:rise .9s var(--ease) .1s forwards}
+/* --- 4. type --- */
+.hero-inner{position:relative;z-index:3;max-width:var(--max)}
+.hero .eyebrow{margin-bottom:24px;color:var(--bone);opacity:0;animation:rise .9s var(--ease) .1s forwards}
 .hero h1{
   font-family:var(--font-display);font-weight:800;
   font-size:clamp(2.6rem,8.4vw,7.4rem);
   line-height:.96;letter-spacing:-.02em;
+  text-shadow:0 2px 40px rgba(11,11,12,.6);   /* insurance over bright footage */
 }
-/* each line masks + slides up on load */
 .hero h1 .ln{display:block;overflow:hidden}
 .hero h1 .ln span{display:block;transform:translateY(110%);animation:reveal 1.1s var(--ease) forwards}
 .hero h1 .ln:nth-child(1) span{animation-delay:.18s}
 .hero h1 .ln:nth-child(2) span{animation-delay:.30s}
 .hero h1 em{font-style:normal;color:var(--copper)}
 .hero .lede{
-  max-width:46ch;margin-top:28px;color:var(--steel);
+  max-width:46ch;margin-top:28px;color:var(--bone);opacity:.78;
   font-size:clamp(1rem,1.5vw,1.18rem);
-  opacity:0;animation:rise .9s var(--ease) .62s forwards;
+  animation:rise .9s var(--ease) .62s forwards;
+  text-shadow:0 1px 20px rgba(11,11,12,.8);
 }
-.hero .lede b{color:var(--bone);font-weight:500}
+.hero .lede b{color:var(--bone);font-weight:500;opacity:1}
 .scrollcue{
-  position:absolute;bottom:34px;right:var(--pad);z-index:2;
-  font-family:var(--font-label);font-size:.66rem;letter-spacing:.3em;color:var(--steel);
+  position:absolute;bottom:34px;right:var(--pad);z-index:3;
+  font-family:var(--font-label);font-size:.66rem;letter-spacing:.3em;color:var(--bone);
   display:flex;align-items:center;gap:10px;
   opacity:0;animation:rise .9s var(--ease) .9s forwards;
 }
 .scrollcue::after{content:"";width:34px;height:1px;background:var(--copper);animation:pulse 2.4s ease-in-out infinite}
 
 @keyframes reveal{to{transform:translateY(0)}}
-@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:.78;transform:translateY(0)}}
 @keyframes pulse{0%,100%{opacity:.3;transform:scaleX(.5);transform-origin:left}50%{opacity:1;transform:scaleX(1);transform-origin:left}}
 
 
 /* ============================================================
    5. IDEAS — the four directions
-   Each row has an .mp4 LOOP HOLDER. Loops autoplay muted; if a
-   file is missing the labelled well shows instead — nothing breaks.
    ============================================================ */
 .rows{max-width:var(--max);margin:0 auto;border-top:1px solid var(--line)}
 .row{
@@ -208,7 +237,7 @@ img,video{display:block;max-width:100%}
   opacity:0;transform:translateY(26px);
   transition:opacity .8s var(--ease),transform .8s var(--ease);
 }
-.row.in{opacity:1;transform:none}          /* added by IntersectionObserver */
+.row.in{opacity:1;transform:none}
 .row:hover .r-title{color:var(--copper-hi)}
 .row:hover .r-media{border-color:var(--copper)}
 .row:hover .r-media video{opacity:.95;transform:scale(1.03)}
@@ -233,7 +262,6 @@ img,video{display:block;max-width:100%}
   border:1px solid var(--line);background:var(--ink-2);
   transition:border-color .4s var(--ease);
 }
-/* subtle diagonal texture, visible only when no video is loaded */
 .r-media::before{
   content:"";position:absolute;inset:0;z-index:0;
   background:
@@ -245,10 +273,8 @@ img,video{display:block;max-width:100%}
   width:100%;height:100%;object-fit:cover;opacity:.8;
   transition:transform .6s var(--ease),opacity .4s var(--ease);
 }
-/* filename hint sits UNDER the video — visible only if the file is missing */
-.r-media .r-slot{
-  position:absolute;inset:0;z-index:0;display:grid;place-items:center;text-align:center;padding:16px;
-}
+/* filename hint — visible only if the file is missing */
+.r-media .r-slot{position:absolute;inset:0;z-index:0;display:grid;place-items:center;text-align:center;padding:16px}
 .r-media .r-slot code{
   font-family:var(--font-label);font-size:.62rem;letter-spacing:.14em;
   color:var(--steel);text-transform:uppercase;
@@ -261,6 +287,26 @@ img,video{display:block;max-width:100%}
   padding:7px 11px;backdrop-filter:blur(4px);
 }
 .r-media .r-flag b{color:var(--copper);font-weight:600}
+
+/* --- the closing invitation under the four ideas --- */
+.ideas-note{
+  max-width:var(--max);margin:clamp(44px,7vh,80px) auto 0;
+  padding:clamp(30px,5vh,52px) clamp(24px,4vw,56px);
+  border:1px solid var(--line);
+  background:linear-gradient(135deg,rgba(194,133,74,.05),transparent 65%);
+  text-align:center;
+}
+.ideas-note p{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(1.15rem,2.4vw,1.85rem);line-height:1.28;
+  letter-spacing:-.01em;max-width:30ch;margin:0 auto;
+}
+.ideas-note p em{font-style:normal;color:var(--copper)}
+.ideas-note .sub{
+  margin-top:18px;font-family:var(--font-body);font-weight:400;
+  font-size:1rem;line-height:1.55;color:var(--steel);
+  max-width:52ch;letter-spacing:0;
+}
 
 
 /* ============================================================
@@ -284,11 +330,8 @@ img,video{display:block;max-width:100%}
 
 /* ============================================================
    7. SHOWCASE
-   ------------------------------------------------------------
    One 4-column grid per category, so videos stay in the EXACT
-   order given — 16:9 spans 2 columns, 9:16 spans 1. No separate
-   rows, no reshuffling.
-   Data lives in the REEL array at the bottom of this file.
+   order given — 16:9 spans 2 columns, 9:16 spans 1.
    ============================================================ */
 .cat{max-width:var(--max);margin:0 auto}
 .cat + .cat{margin-top:clamp(44px,7vh,84px)}
@@ -297,7 +340,6 @@ img,video{display:block;max-width:100%}
 .cat-h .eyebrow{color:var(--copper);white-space:nowrap}
 .cat-h .rule{flex:1;height:1px;background:var(--line)}
 .cat-h .count{font-family:var(--font-label);font-size:.62rem;letter-spacing:.16em;color:var(--steel)}
-/* the role line — tells them what Steve actually did on this body of work */
 .cat-h .role{margin-top:10px;color:var(--steel);font-size:.92rem;max-width:60ch}
 
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:start}
@@ -319,7 +361,6 @@ img,video{display:block;max-width:100%}
 }
 .vid .play::after{content:"▶";position:absolute;color:var(--bone);font-size:.78rem;padding-left:3px}
 .vid:hover .play::before{border-color:var(--copper);background:rgba(194,133,74,.15)}
-/* title strip along the bottom of each tile */
 .vid .cap{
   position:absolute;left:0;right:0;bottom:0;z-index:2;pointer-events:none;
   padding:26px 12px 11px;
@@ -378,10 +419,9 @@ img,video{display:block;max-width:100%}
 @media(max-width:900px){
   .row{grid-template-columns:1fr;gap:18px}
   .r-num{padding-top:0}
-  .r-media{order:-1}                 /* frame first, copy under — reads better */
+  .r-media{order:-1}
   .site-head .by{display:none}
   .sec-head{align-items:flex-start}
-  /* 2-col grid: a 16:9 takes the full row, a 9:16 takes half */
   .grid{grid-template-columns:repeat(2,1fr);gap:12px}
 }
 
@@ -391,7 +431,8 @@ img,video{display:block;max-width:100%}
   .hero h1{font-size:clamp(2.3rem,11vw,3.4rem);line-height:1}
   .hero .lede{font-size:.95rem;margin-top:22px}
   .hero::after{right:8%}
-  .scrollcue{left:var(--pad);right:auto;bottom:28px}   /* clear of the copy */
+  .hero-scrim{background:linear-gradient(to top,rgba(11,11,12,.97) 0%,rgba(11,11,12,.7) 45%,rgba(11,11,12,.4) 100%)}
+  .scrollcue{left:var(--pad);right:auto;bottom:28px}
   .eyebrow{font-size:.62rem;letter-spacing:.26em}
 
   .section{padding:64px var(--pad)}
@@ -401,6 +442,10 @@ img,video{display:block;max-width:100%}
   .r-title{font-size:1.45rem}
   .r-desc{font-size:.95rem;max-width:100%}
   .r-kicker{margin-bottom:10px}
+
+  .ideas-note{padding:30px 20px}
+  .ideas-note p{font-size:1.15rem}
+  .ideas-note .sub{font-size:.92rem}
 
   .cat-h .top{gap:10px}
   .cat-h .count{display:none}
@@ -426,7 +471,8 @@ img,video{display:block;max-width:100%}
    ============================================================ */
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-  .hero .eyebrow,.hero .lede,.scrollcue{opacity:1}
+  .hero .eyebrow,.scrollcue{opacity:1}
+  .hero .lede{opacity:.78}
   .hero h1 .ln span{transform:none}
   .row{opacity:1;transform:none}
 }
@@ -442,8 +488,13 @@ img,video{display:block;max-width:100%}
 </header>
 
 
-<!-- ============================ HERO ============================ -->
+<!-- ============================================================
+     HERO — media/hero.gif is the first thing they see
+     ============================================================ -->
 <section class="hero">
+  <img class="hero-media" src="media/hero.gif" alt="" aria-hidden="true">
+  <div class="hero-scrim"></div>
+
   <div class="hero-inner">
     <div class="eyebrow">Film · Motion · 3D — for Concept Plus</div>
     <h1>
@@ -459,23 +510,18 @@ img,video{display:block;max-width:100%}
 <!-- ============================================================
      IDEAS — 4 DIRECTIONS
      ------------------------------------------------------------
-     ▶ DROP YOUR LOOPS IN A /media FOLDER NEXT TO THIS FILE:
-
+     ▶ LOOPS GO IN /media NEXT TO THIS FILE:
          media/idea-01-concept-film.mp4
          media/idea-02-the-door.mp4
          media/idea-03-sketch-to-world.mp4
          media/idea-04-house-and-home.mp4
-
-     SPEC per file: 1920×1080, 16:9, 6–12s seamless loop,
-     NO AUDIO, H.264 .mp4, under ~4 MB so it stays light on mobile.
-
-     Optional poster stills (first frame, .jpg), same names:
-         media/idea-01-concept-film.jpg   ...etc
+     SPEC: 1920×1080, 6–12s seamless loop, NO AUDIO, H.264, under ~4 MB.
+     Optional poster stills, same names with .jpg
      ============================================================ -->
 <section class="section" id="ideas">
   <div class="sec-head">
     <h2>Four ways to tell one story.</h2>
-    <p class="note">Directions, not final films — each a different way to show who Concept Plus is, what it does, and where it's going. The loops are look references only.</p>
+    <p class="note">Directions, not final films — each a different way to show who Concept Plus is, what it does, and where it's going.</p>
   </div>
 
   <div class="rows">
@@ -549,6 +595,12 @@ img,video{display:block;max-width:100%}
     </article>
 
   </div>
+
+  <!-- ---------- the closing invitation ---------- -->
+  <div class="ideas-note">
+    <p>These are four starting points. <em>The limit is the sky.</em></p>
+    <p class="sub">Small examples of what's possible — not a menu. If none of them are quite it, that's useful too. Tell me what you see, and we'll build it. I'd love to hear from you.</p>
+  </div>
 </section>
 
 
@@ -571,7 +623,7 @@ img,video{display:block;max-width:100%}
 <section class="section" id="work">
   <div class="sec-head">
     <h2>Selected work.</h2>
-    <p class="note">Real estate films, 3D and music, brand content, motion. Tap any frame to play.</p>
+    <p class="note">A small sample from years of work across film, 3D, motion and brand content — not the whole archive. Tap any frame to play.</p>
   </div>
   <div id="reel"></div>
 </section>
@@ -585,7 +637,7 @@ img,video{display:block;max-width:100%}
     <div class="who-line"><b>Steve Nooshinfar</b> — Creative Director · Film, Motion &amp; 3D</div>
     <div class="cta">
       <a class="primary" href="https://wa.me/971562450103" target="_blank" rel="noopener">WhatsApp&nbsp;→ +971 56 245 0103</a>
-      <!-- VERIFY this address before sending — likely typo, see note -->
+      <!-- VERIFY this address before sending -->
       <a href="mailto:Steve.nooshionfar@gmail.com">Email&nbsp;→ Steve.nooshionfar@gmail.com</a>
     </div>
   </div>
@@ -666,7 +718,6 @@ function makeTile(item){
   el.setAttribute("tabindex","0");
   el.setAttribute("aria-label","Play: " + item.t);
 
-  /* maxres isn't guaranteed to exist — fall back to hq */
   el.innerHTML =
     `<img loading="lazy"
           src="https://i.ytimg.com/vi/${item.id}/maxresdefault.jpg"
@@ -676,7 +727,7 @@ function makeTile(item){
      <span class="cap">${item.t}</span>`;
 
   const play = () => {
-    if(el.dataset.on) return;      /* don't reload if already playing */
+    if(el.dataset.on) return;
     el.dataset.on = "1";
     el.innerHTML =
       `<iframe src="https://www.youtube.com/embed/${item.id}?autoplay=1&rel=0"
@@ -700,7 +751,6 @@ REEL.forEach(group => {
   const cat = document.createElement("div");
   cat.className = "cat";
 
-  /* header: label + rule + count, with the role line underneath */
   const head = document.createElement("div");
   head.className = "cat-h";
   head.innerHTML =
@@ -712,7 +762,6 @@ REEL.forEach(group => {
      ${group.role ? `<p class="role">${group.role}</p>` : ""}`;
   cat.appendChild(head);
 
-  /* one grid — keeps the exact order, mixes 16:9 and 9:16 */
   const g = document.createElement("div");
   g.className = "grid";
   group.items.forEach(i => g.appendChild(makeTile(i)));
@@ -723,8 +772,7 @@ REEL.forEach(group => {
 
 
 /* ------------------------------------------------------------
-   Scroll-reveal for the idea rows. One-shot: once a row is in,
-   stop observing so nothing re-animates on scroll-up.
+   Scroll-reveal for the idea rows. One-shot.
    ------------------------------------------------------------ */
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
