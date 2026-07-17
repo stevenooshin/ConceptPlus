@@ -263,6 +263,23 @@ img,video{display:block;max-width:100%}
 .who p{color:var(--steel);max-width:62ch}
 .who p b{color:var(--bone);font-weight:500}
 
+/* the motto — set apart, copper rule, the one line they remember */
+.motto{
+  margin-top:8px;padding-left:clamp(18px,3vw,28px);
+  border-left:2px solid var(--copper);
+}
+.motto .m-lab{
+  font-family:var(--font-label);font-size:.62rem;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--steel);margin-bottom:12px;
+}
+.motto .m-line{
+  font-family:var(--font-display);font-weight:700;
+  font-size:clamp(1.3rem,2.8vw,2rem);line-height:1.2;
+  letter-spacing:-.015em;color:var(--bone);
+}
+.motto .m-line em{font-style:normal;color:var(--copper)}
+.motto .m-sub{margin-top:14px;color:var(--steel);font-size:.96rem;max-width:52ch}
+
 
 /* ============ 10. CONTACT + FOOTER ============ */
 .contact{position:relative;overflow:hidden}
@@ -435,7 +452,7 @@ img,video{display:block;max-width:100%}
 <section class="section" id="process">
   <div class="sec-head">
     <h2>How it's made.</h2>
-    <p class="note">Three phases. Nothing gets generated until the direction is signed off — so there are no surprises at the end.</p>
+    <p class="note">Three phases. Nothing gets created until the direction is signed off — so there are no surprises at the end.</p>
   </div>
 
   <div class="phases">
@@ -444,7 +461,7 @@ img,video{display:block;max-width:100%}
       <h3>Direction</h3>
       <div>
         <p>Story, script, voice-over, mood board, storyboard. Everything that decides what the film is, before a single frame exists.</p>
-        <span class="gate">→ Your approval before we shoot a frame</span>
+        <span class="gate">→ Your approval before we start creating any frame</span>
       </div>
     </article>
 
@@ -493,6 +510,12 @@ img,video{display:block;max-width:100%}
     <div class="eyebrow">Who's behind it</div>
     <h3>Directed and produced by Steve Nooshinfar.</h3>
     <p>Creative Director in Dubai working in high-end cinematic AI film, motion design, and 3D advertising. I run the whole chain myself — <b>concept, script, storyboard, direction, AI/3D generation, edit</b> — so one taste holds the work from the first frame to the last. Matte, filmic, restrained — engineered to never look "AI-made."</p>
+
+    <div class="motto">
+      <div class="m-lab">My motto</div>
+      <p class="m-line">Creative in the work. <em>Honest in the room.</em></p>
+      <p class="m-sub">Ideas should surprise you. Timelines, budgets and opinions shouldn't. I'll bring you something you haven't seen — and I'll tell you straight when something isn't working, including when it's mine.</p>
+    </div>
   </div>
 </section>
 
