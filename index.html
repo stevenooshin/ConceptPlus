@@ -3,17 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Concept Plus — Creative Direction · Steve Nooshinfar</title>
-<meta name="description" content="A creative direction for Concept Plus — four film directions plus selected work. By Steve Nooshinfar.">
+<title>Concept Plus — Hero Film · Proposal · Steve Nooshinfar</title>
+<meta name="description" content="Concept Plus hero film — selected direction, deliverables and next steps. By Steve Nooshinfar.">
 <meta name="theme-color" content="#0B0B0C">
 
 <!-- ============================================================
-     FONTS
-     Close matches to the Concept Plus brand:
-       Archivo      → headlines (their bold grotesque)
-       Chakra Petch → labels/eyebrows (echoes their techno wordmark)
-       Inter        → body copy
-     TO SWAP: change the link below + the --font-* tokens in :root.
+     FONTS — close matches to the Concept Plus brand.
+     Swap the link + the --font-* tokens in :root to change.
      ============================================================ -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,96 +17,63 @@
 
 <style>
 /* ============================================================
-   CONCEPT PLUS — CREATIVE DIRECTION PITCH
+   CONCEPT PLUS — HERO FILM · PROPOSAL
    by Steve Nooshinfar
    ------------------------------------------------------------
-   Single self-contained file. No build step, no libraries.
-   Rename to index.html and drop into GitHub Pages to go live.
-
-   FILES THIS PAGE EXPECTS — all sitting FLAT next to index.html,
-   no folder. Names must match exactly:
-     hero.mp4                            ← hero background, plays on load
-     mediaidea-01-concept-film.mp4       ← the 4 idea loops
-     mediaidea-02-the-door.mp4
-     mediaidea-03-sketch-to-world.mp4
+   FILES THIS PAGE EXPECTS — flat, next to index.html:
+     hero.mp4
      mediaidea-04-house-and-home.mp4
 
-   HOW THIS FILE IS ORGANISED
-     1. TOKENS      — colors, fonts, easing. Edit brand here only.
-     2. BASE        — reset + typography defaults
-     3. HEADER
-     4. HERO        — hero.gif background
-     5. IDEAS       — the 4 directions + closing note
-     6. WHO         — Steve credibility band
-     7. SHOWCASE    — video reel (data lives in JS at the bottom)
-     8. CONTACT + FOOTER
-     9. RESPONSIVE  — mobile rules
-    10. A11Y        — reduced motion
+   SECTIONS
+     1. TOKENS   2. BASE    3. HEADER   4. HERO
+     5. SELECTED DIRECTION  6. DELIVERABLES  7. PHASES
+     8. INVESTMENT          9. WHO       10. CONTACT + FOOTER
+    11. RESPONSIVE         12. A11Y
    ============================================================ */
 
 
-/* ============================================================
-   1. TOKENS  ← EDIT BRAND VALUES HERE, NOWHERE ELSE
-   ============================================================ */
+/* ============ 1. TOKENS — edit brand values here only ============ */
 :root{
-  /* --- color: sampled from conceptplus.ae + company profile PDFs --- */
-  --ink:      #0B0B0C;   /* page ground — near-black, matches their site */
-  --ink-2:    #141416;   /* raised surface: cards, media wells */
-  --bone:     #F0EDE6;   /* primary text — warm off-white, not pure white */
-  --steel:    #8C8F92;   /* secondary text + their grey CP monogram */
-  --copper:   #C2854A;   /* THE accent — burnt copper. VERIFY exact hex */
-  --copper-hi:#D69A5C;   /* hover state */
-  --line:     rgba(240,237,230,.12);  /* hairline dividers */
+  --ink:      #0B0B0C;
+  --ink-2:    #141416;
+  --bone:     #F0EDE6;
+  --steel:    #8C8F92;
+  --copper:   #C2854A;
+  --copper-hi:#D69A5C;
+  --line:     rgba(240,237,230,.12);
 
-  /* --- type --- */
   --font-display:"Archivo",sans-serif;
   --font-label:"Chakra Petch",monospace;
   --font-body:"Inter",system-ui,sans-serif;
 
-  /* --- motion --- */
   --ease:cubic-bezier(.16,1,.3,1);
-
-  /* --- layout --- */
-  --pad:clamp(20px,5vw,64px);   /* page gutter, scales with viewport */
-  --max:1200px;                 /* content max width */
+  --pad:clamp(20px,5vw,64px);
+  --max:1200px;
 }
 
 
-/* ============================================================
-   2. BASE
-   ============================================================ */
+/* ============ 2. BASE ============ */
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
-  background:var(--ink);
-  color:var(--bone);
-  font-family:var(--font-body);
-  line-height:1.5;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;              /* kills sideways scroll on mobile */
+  background:var(--ink);color:var(--bone);
+  font-family:var(--font-body);line-height:1.5;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 ::selection{background:var(--copper);color:var(--ink)}
 a{color:inherit;text-decoration:none}
 img,video{display:block;max-width:100%}
 :focus-visible{outline:2px solid var(--copper);outline-offset:3px}
 
-/* the small techno label used everywhere */
 .eyebrow{
-  font-family:var(--font-label);
-  font-weight:500;
-  font-size:.72rem;
-  letter-spacing:.34em;
-  text-transform:uppercase;
-  color:var(--steel);
+  font-family:var(--font-label);font-weight:500;font-size:.72rem;
+  letter-spacing:.34em;text-transform:uppercase;color:var(--steel);
 }
 .wrap{max-width:var(--max);margin:0 auto}
-
-/* generic section shell */
 .section{padding:clamp(72px,13vh,150px) var(--pad)}
 .sec-head{
-  display:flex;flex-wrap:wrap;gap:24px;
-  align-items:flex-end;justify-content:space-between;
-  margin:0 auto clamp(36px,6vh,72px);max-width:var(--max);
+  display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;
+  justify-content:space-between;margin:0 auto clamp(36px,6vh,72px);max-width:var(--max);
 }
 .sec-head h2{
   font-family:var(--font-display);font-weight:700;
@@ -120,87 +83,57 @@ img,video{display:block;max-width:100%}
 .sec-head .note{max-width:36ch;color:var(--steel);font-size:.98rem}
 
 
-/* ============================================================
-   3. HEADER — fixed, blend-mode so it reads on any frame
-   ============================================================ */
+/* ============ 3. HEADER ============ */
 .site-head{
   position:fixed;top:0;left:0;right:0;z-index:50;
   display:flex;align-items:center;justify-content:space-between;
-  padding:20px var(--pad);
-  mix-blend-mode:difference;
-  pointer-events:none;                /* never blocks taps on mobile */
+  padding:20px var(--pad);mix-blend-mode:difference;pointer-events:none;
 }
 .site-head > *{pointer-events:auto}
 .brand{
-  font-family:var(--font-label);font-weight:600;
-  letter-spacing:.22em;font-size:.82rem;
-  display:flex;align-items:center;gap:12px;
+  font-family:var(--font-label);font-weight:600;letter-spacing:.22em;
+  font-size:.82rem;display:flex;align-items:center;gap:12px;
 }
-/* placeholder monogram — REPLACE with their real logo SVG when supplied */
 .brand .cp{
-  display:inline-grid;place-items:center;
-  width:26px;height:26px;border:1.5px solid var(--bone);
-  font-size:.6rem;letter-spacing:.04em;flex:0 0 auto;
+  display:inline-grid;place-items:center;width:26px;height:26px;
+  border:1.5px solid var(--bone);font-size:.6rem;letter-spacing:.04em;flex:0 0 auto;
 }
 .site-head .by{font-family:var(--font-label);font-size:.68rem;letter-spacing:.24em;opacity:.8}
 
 
-/* ============================================================
-   4. HERO
-   Layer order, back to front:
-     1. hero.mp4              — full-bleed, autoplays muted on load
-     2. scrim                 — dark gradient so type stays legible
-     3. copper glow + beam    — the brand signature
-     4. type
-   ============================================================ */
+/* ============ 4. HERO ============ */
 .hero{
-  position:relative;min-height:100svh;   /* svh = correct on mobile browsers */
+  position:relative;min-height:100svh;
   display:flex;flex-direction:column;justify-content:flex-end;
   padding:0 var(--pad) clamp(48px,9vh,110px);
-  overflow:hidden;
-  background:var(--ink);
+  overflow:hidden;background:var(--ink);
 }
-
-/* --- 1. the hero film --- */
-.hero-media{
-  position:absolute;inset:0;z-index:0;
-  width:100%;height:100%;object-fit:cover;
-  opacity:.85;
-}
-
-/* --- 2. scrim: keeps the headline readable over any footage --- */
+.hero-media{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;opacity:.85}
 .hero-scrim{
   position:absolute;inset:0;z-index:1;
   background:
-    linear-gradient(to top, rgba(11,11,12,.96) 0%, rgba(11,11,12,.55) 42%, rgba(11,11,12,.25) 70%, rgba(11,11,12,.5) 100%),
-    linear-gradient(to right, rgba(11,11,12,.7) 0%, transparent 55%);
+    linear-gradient(to top,rgba(11,11,12,.96) 0%,rgba(11,11,12,.55) 42%,rgba(11,11,12,.25) 70%,rgba(11,11,12,.5) 100%),
+    linear-gradient(to right,rgba(11,11,12,.7) 0%,transparent 55%);
 }
-
-/* --- 3. copper glow, slow drift --- */
 .hero::before{
   content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
     radial-gradient(60% 50% at 78% 18%,rgba(194,133,74,.14),transparent 60%),
     radial-gradient(40% 40% at 20% 90%,rgba(194,133,74,.05),transparent 70%);
-  animation:drift 22s var(--ease) infinite alternate;
-  mix-blend-mode:screen;
+  animation:drift 22s var(--ease) infinite alternate;mix-blend-mode:screen;
 }
-/* the 1px vertical beam — the restraint motif */
 .hero::after{
   content:"";position:absolute;top:0;right:14%;width:1px;height:100%;z-index:2;pointer-events:none;
-  background:linear-gradient(to bottom,transparent,rgba(194,133,74,.5),transparent);
-  opacity:.4;
+  background:linear-gradient(to bottom,transparent,rgba(194,133,74,.5),transparent);opacity:.4;
 }
 @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-4%,3%,0) scale(1.08)}}
 
-/* --- 4. type --- */
 .hero-inner{position:relative;z-index:3;max-width:var(--max)}
 .hero .eyebrow{margin-bottom:24px;color:var(--bone);opacity:0;animation:rise .9s var(--ease) .1s forwards}
 .hero h1{
   font-family:var(--font-display);font-weight:800;
-  font-size:clamp(2.6rem,8.4vw,7.4rem);
-  line-height:.96;letter-spacing:-.02em;
-  text-shadow:0 2px 40px rgba(11,11,12,.6);   /* insurance over bright footage */
+  font-size:clamp(2.6rem,8.4vw,7.4rem);line-height:.96;letter-spacing:-.02em;
+  text-shadow:0 2px 40px rgba(11,11,12,.6);
 }
 .hero h1 .ln{display:block;overflow:hidden}
 .hero h1 .ln span{display:block;transform:translateY(110%);animation:reveal 1.1s var(--ease) forwards}
@@ -217,8 +150,7 @@ img,video{display:block;max-width:100%}
 .scrollcue{
   position:absolute;bottom:34px;right:var(--pad);z-index:3;
   font-family:var(--font-label);font-size:.66rem;letter-spacing:.3em;color:var(--bone);
-  display:flex;align-items:center;gap:10px;
-  opacity:0;animation:rise .9s var(--ease) .9s forwards;
+  display:flex;align-items:center;gap:10px;opacity:0;animation:rise .9s var(--ease) .9s forwards;
 }
 .scrollcue::after{content:"";width:34px;height:1px;background:var(--copper);animation:pulse 2.4s ease-in-out infinite}
 
@@ -227,160 +159,113 @@ img,video{display:block;max-width:100%}
 @keyframes pulse{0%,100%{opacity:.3;transform:scaleX(.5);transform-origin:left}50%{opacity:1;transform:scaleX(1);transform-origin:left}}
 
 
-/* ============================================================
-   5. IDEAS — the four directions
-   ============================================================ */
-.rows{max-width:var(--max);margin:0 auto;border-top:1px solid var(--line)}
-.row{
-  display:grid;grid-template-columns:56px 1fr 1.05fr;
-  gap:clamp(20px,4vw,56px);align-items:center;
-  padding:clamp(28px,5vh,54px) 0;border-bottom:1px solid var(--line);
-  opacity:0;transform:translateY(26px);
-  transition:opacity .8s var(--ease),transform .8s var(--ease);
+/* ============ 5. SELECTED DIRECTION ============ */
+.selected{max-width:var(--max);margin:0 auto}
+.sel-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--font-label);font-size:.66rem;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--copper);
+  border:1px solid var(--copper);padding:9px 15px;margin-bottom:26px;
 }
-.row.in{opacity:1;transform:none}
-.row:hover .r-title{color:var(--copper-hi)}
-.row:hover .r-media{border-color:var(--copper)}
-.row:hover .r-media video{opacity:.95;transform:scale(1.03)}
+.sel-tag::before{content:"";width:6px;height:6px;background:var(--copper);border-radius:50%}
+.sel-title{
+  font-family:var(--font-display);font-weight:800;
+  font-size:clamp(2.1rem,5.6vw,4.4rem);line-height:.98;letter-spacing:-.02em;max-width:14ch;
+}
+.sel-title em{font-style:normal;color:var(--copper)}
+.sel-kicker{font-family:var(--font-label);font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--steel);margin-bottom:16px}
 
-.r-num{font-family:var(--font-label);font-size:.9rem;color:var(--steel);letter-spacing:.1em;padding-top:6px}
-.r-kicker{font-family:var(--font-label);font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--copper);margin-bottom:14px}
-.r-title{
-  font-family:var(--font-display);font-weight:700;
-  font-size:clamp(1.5rem,3vw,2.4rem);line-height:1.02;
-  letter-spacing:-.015em;transition:color .4s var(--ease);
-}
-.r-desc{margin-top:16px;color:var(--steel);max-width:46ch;font-size:1rem}
-.r-split{
-  display:block;margin-top:12px;font-family:var(--font-label);
-  font-size:.68rem;letter-spacing:.16em;color:var(--steel);
-  opacity:.85;text-transform:uppercase;
-}
-
-/* --- the media well --- */
-.r-media{
+/* the 04 loop, full width */
+.sel-media{
   position:relative;aspect-ratio:16/9;overflow:hidden;
   border:1px solid var(--line);background:var(--ink-2);
+  margin:clamp(30px,5vh,54px) 0;
+}
+.sel-media::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:linear-gradient(135deg,rgba(194,133,74,.07),transparent 60%);
+}
+.sel-media video{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;opacity:.86}
+.sel-media .slot{position:absolute;inset:0;z-index:0;display:grid;place-items:center;padding:16px}
+.sel-media.has-video .slot{display:none}
+.sel-media .slot code{font-family:var(--font-label);font-size:.62rem;letter-spacing:.14em;color:var(--steel);text-transform:uppercase}
+
+.sel-body{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,60px)}
+.sel-body p{color:var(--steel);font-size:1.02rem}
+.sel-body p b{color:var(--bone);font-weight:500}
+.sel-body .pull{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(1.2rem,2.2vw,1.6rem);line-height:1.3;
+  letter-spacing:-.01em;color:var(--bone);
+}
+.sel-body .pull em{font-style:normal;color:var(--copper)}
+
+
+/* ============ 6. DELIVERABLES ============ */
+.masters{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:var(--max);margin:0 auto}
+.master{
+  border:1px solid var(--line);padding:clamp(26px,4vw,42px);
+  background:linear-gradient(160deg,rgba(194,133,74,.04),transparent 70%);
   transition:border-color .4s var(--ease);
 }
-.r-media::before{
-  content:"";position:absolute;inset:0;z-index:0;
-  background:
-    linear-gradient(135deg,rgba(194,133,74,.07),transparent 60%),
-    repeating-linear-gradient(135deg,transparent,transparent 22px,rgba(240,237,230,.02) 22px,rgba(240,237,230,.02) 23px);
+.master:hover{border-color:var(--copper)}
+.master .m-let{
+  font-family:var(--font-display);font-weight:800;font-size:2.6rem;
+  line-height:1;color:var(--copper);margin-bottom:18px;
 }
-.r-media video{
-  position:relative;z-index:1;
-  width:100%;height:100%;object-fit:cover;opacity:.8;
-  transition:transform .6s var(--ease),opacity .4s var(--ease);
+.master h3{font-family:var(--font-display);font-weight:700;font-size:clamp(1.2rem,2.2vw,1.6rem);letter-spacing:-.01em}
+.master .m-spec{
+  font-family:var(--font-label);font-size:.66rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--copper);margin:12px 0 16px;
 }
-/* filename hint — visible ONLY if the file is missing.
-   The .has-video class is added by JS as soon as a loop loads,
-   which hides this. (The video sits at 0.8 opacity, so without
-   this the text would show through the footage.) */
-.r-media .r-slot{position:absolute;inset:0;z-index:0;display:grid;place-items:center;text-align:center;padding:16px}
-.r-media.has-video .r-slot{display:none}
-.r-media .r-slot code{
-  font-family:var(--font-label);font-size:.62rem;letter-spacing:.14em;
-  color:var(--steel);text-transform:uppercase;
-}
-.r-media .r-flag{
-  position:absolute;left:12px;bottom:12px;z-index:3;
-  font-family:var(--font-label);font-size:.6rem;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--bone);
-  background:rgba(11,11,12,.72);border:1px solid var(--line);
-  padding:7px 11px;backdrop-filter:blur(4px);
-}
-.r-media .r-flag b{color:var(--copper);font-weight:600}
+.master p{color:var(--steel);font-size:.98rem}
 
-/* --- the closing invitation under the four ideas --- */
-.ideas-note{
-  max-width:var(--max);margin:clamp(44px,7vh,80px) auto 0;
-  padding:clamp(30px,5vh,52px) clamp(24px,4vw,56px);
-  border:1px solid var(--line);
-  background:linear-gradient(135deg,rgba(194,133,74,.05),transparent 65%);
-  text-align:center;
+
+/* ============ 7. PHASES ============ */
+.phases{max-width:var(--max);margin:0 auto;border-top:1px solid var(--line)}
+.phase{
+  display:grid;grid-template-columns:70px 1fr 1.2fr;gap:clamp(18px,4vw,52px);
+  align-items:baseline;padding:clamp(26px,4vh,44px) 0;border-bottom:1px solid var(--line);
 }
-.ideas-note p{
-  font-family:var(--font-display);font-weight:600;
-  font-size:clamp(1.15rem,2.4vw,1.85rem);line-height:1.28;
-  letter-spacing:-.01em;max-width:30ch;margin:0 auto;
-}
-.ideas-note p em{font-style:normal;color:var(--copper)}
-.ideas-note .sub{
-  margin-top:18px;font-family:var(--font-body);font-weight:400;
-  font-size:1rem;line-height:1.55;color:var(--steel);
-  max-width:52ch;letter-spacing:0;
+.phase .p-num{font-family:var(--font-label);font-size:.86rem;color:var(--copper);letter-spacing:.1em}
+.phase h3{font-family:var(--font-display);font-weight:700;font-size:clamp(1.15rem,2.2vw,1.6rem);letter-spacing:-.01em}
+.phase p{color:var(--steel);font-size:.98rem}
+.phase .gate{
+  display:block;margin-top:12px;font-family:var(--font-label);
+  font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--copper);
 }
 
 
-/* ============================================================
-   6. WHO — credibility band
-   ============================================================ */
-.who{
-  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  background:linear-gradient(180deg,transparent,rgba(194,133,74,.03),transparent);
+/* ============ 8. INVESTMENT ============ */
+.invest{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(180deg,transparent,rgba(194,133,74,.04),transparent)}
+.price-box{
+  max-width:var(--max);margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,70px);align-items:center;
 }
-.who .wrap{display:grid;gap:26px}
+.price-fig .eyebrow{margin-bottom:16px}
+.price-fig .fig{
+  font-family:var(--font-display);font-weight:800;
+  font-size:clamp(3rem,9vw,6.4rem);line-height:.9;letter-spacing:-.03em;
+}
+.price-fig .fig .cur{color:var(--copper);font-size:.42em;vertical-align:super;letter-spacing:0;margin-right:6px}
+.price-fig .sub{margin-top:18px;color:var(--steel);max-width:34ch}
+
+.terms{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.term{display:flex;justify-content:space-between;gap:16px;padding:18px 20px;background:var(--ink)}
+.term dt{font-family:var(--font-label);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--steel)}
+.term dd{font-size:.94rem;text-align:right;color:var(--bone)}
+
+
+/* ============ 9. WHO ============ */
+.who{border-bottom:1px solid var(--line)}
+.who .wrap{display:grid;gap:24px}
 .who h3{font-family:var(--font-display);font-weight:700;font-size:clamp(1.35rem,3vw,2.1rem);letter-spacing:-.01em;max-width:24ch}
 .who p{color:var(--steel);max-width:62ch}
 .who p b{color:var(--bone);font-weight:500}
-.tags{display:flex;flex-wrap:wrap;gap:10px}
-.tags span{
-  font-family:var(--font-label);font-size:.66rem;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--steel);
-  border:1px solid var(--line);padding:8px 13px;
-}
 
 
-/* ============================================================
-   7. SHOWCASE
-   One 4-column grid per category, so videos stay in the EXACT
-   order given — 16:9 spans 2 columns, 9:16 spans 1.
-   ============================================================ */
-.cat{max-width:var(--max);margin:0 auto}
-.cat + .cat{margin-top:clamp(44px,7vh,84px)}
-.cat-h{margin-bottom:20px}
-.cat-h .top{display:flex;align-items:baseline;gap:16px}
-.cat-h .eyebrow{color:var(--copper);white-space:nowrap}
-.cat-h .rule{flex:1;height:1px;background:var(--line)}
-.cat-h .count{font-family:var(--font-label);font-size:.62rem;letter-spacing:.16em;color:var(--steel)}
-.cat-h .role{margin-top:10px;color:var(--steel);font-size:.92rem;max-width:60ch}
-
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:start}
-.grid .vid.wide{grid-column:span 2}
-.grid .vid.tall{grid-column:span 1}
-
-/* --- the video tile (click-to-load facade = fast page) --- */
-.vid{position:relative;overflow:hidden;background:var(--ink-2);border:1px solid var(--line);cursor:pointer}
-.vid.wide{aspect-ratio:16/9}
-.vid.tall{aspect-ratio:9/16}
-.vid img{width:100%;height:100%;object-fit:cover;opacity:.72;transition:opacity .4s var(--ease),transform .6s var(--ease)}
-.vid:hover img{opacity:1;transform:scale(1.03)}
-.vid:hover{border-color:var(--copper)}
-.vid .play{position:absolute;inset:0;display:grid;place-items:center;z-index:2;pointer-events:none}
-.vid .play::before{
-  content:"";width:58px;height:58px;border:1px solid var(--bone);border-radius:50%;
-  background:rgba(11,11,12,.35);backdrop-filter:blur(2px);
-  transition:border-color .3s,background .3s;
-}
-.vid .play::after{content:"▶";position:absolute;color:var(--bone);font-size:.78rem;padding-left:3px}
-.vid:hover .play::before{border-color:var(--copper);background:rgba(194,133,74,.15)}
-.vid .cap{
-  position:absolute;left:0;right:0;bottom:0;z-index:2;pointer-events:none;
-  padding:26px 12px 11px;
-  font-family:var(--font-label);font-size:.62rem;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--bone);
-  background:linear-gradient(to top,rgba(11,11,12,.9),transparent);
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
-}
-.vid iframe{width:100%;height:100%;border:0;display:block}
-
-
-/* ============================================================
-   8. CONTACT + FOOTER
-   ============================================================ */
-.contact{border-top:1px solid var(--line);position:relative;overflow:hidden}
+/* ============ 10. CONTACT + FOOTER ============ */
+.contact{position:relative;overflow:hidden}
 .contact::before{
   content:"";position:absolute;inset:0;z-index:0;
   background:radial-gradient(50% 70% at 80% 50%,rgba(194,133,74,.10),transparent 60%);
@@ -388,8 +273,7 @@ img,video{display:block;max-width:100%}
 .contact .wrap{position:relative;z-index:2}
 .contact h2{
   font-family:var(--font-display);font-weight:800;
-  font-size:clamp(2rem,6vw,4.6rem);line-height:.98;
-  letter-spacing:-.02em;max-width:16ch;
+  font-size:clamp(2rem,6vw,4.6rem);line-height:.98;letter-spacing:-.02em;max-width:16ch;
 }
 .contact h2 em{font-style:normal;color:var(--copper)}
 .contact .who-line{
@@ -399,9 +283,9 @@ img,video{display:block;max-width:100%}
 .contact .who-line b{color:var(--bone)}
 .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
 .cta a{
-  font-family:var(--font-label);font-size:.76rem;letter-spacing:.12em;
-  text-transform:uppercase;padding:16px 24px;border:1px solid var(--line);
-  transition:.3s var(--ease);display:flex;align-items:center;gap:10px;
+  font-family:var(--font-label);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:16px 24px;border:1px solid var(--line);transition:.3s var(--ease);
+  display:flex;align-items:center;gap:10px;
 }
 .cta a:hover{border-color:var(--copper);color:var(--copper-hi);transform:translateY(-2px)}
 .cta a.primary{background:var(--copper);color:var(--ink);border-color:var(--copper)}
@@ -416,21 +300,16 @@ img,video{display:block;max-width:100%}
 .foot b{color:var(--bone);font-weight:500}
 
 
-/* ============================================================
-   9. RESPONSIVE
-   ============================================================ */
-
-/* --- tablet / small laptop --- */
+/* ============ 11. RESPONSIVE ============ */
 @media(max-width:900px){
-  .row{grid-template-columns:1fr;gap:18px}
-  .r-num{padding-top:0}
-  .r-media{order:-1}
   .site-head .by{display:none}
   .sec-head{align-items:flex-start}
-  .grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .sel-body{grid-template-columns:1fr;gap:22px}
+  .masters{grid-template-columns:1fr}
+  .phase{grid-template-columns:1fr;gap:10px}
+  .phase .p-num{font-size:.74rem;letter-spacing:.2em}
+  .price-box{grid-template-columns:1fr;gap:34px}
 }
-
-/* --- phone --- */
 @media(max-width:560px){
   .hero{padding-bottom:76px}
   .hero h1{font-size:clamp(2.3rem,11vw,3.4rem);line-height:1}
@@ -444,58 +323,43 @@ img,video{display:block;max-width:100%}
   .sec-head{margin-bottom:32px;gap:14px}
   .sec-head .note{max-width:100%}
 
-  .r-title{font-size:1.45rem}
-  .r-desc{font-size:.95rem;max-width:100%}
-  .r-kicker{margin-bottom:10px}
+  .sel-title{font-size:1.9rem}
+  .sel-body p{font-size:.95rem}
+  .master .m-let{font-size:2rem;margin-bottom:12px}
 
-  .ideas-note{padding:30px 20px}
-  .ideas-note p{font-size:1.15rem}
-  .ideas-note .sub{font-size:.92rem}
-
-  .cat-h .top{gap:10px}
-  .cat-h .count{display:none}
-  .cat-h .role{font-size:.86rem}
-  .vid .play::before{width:44px;height:44px}
-  .vid .cap{font-size:.55rem;letter-spacing:.08em;padding:20px 9px 9px}
+  .term{flex-direction:column;gap:6px;padding:16px}
+  .term dd{text-align:left}
 
   .cta{flex-direction:column;align-items:stretch}
   .cta a{justify-content:center;padding:15px 18px;font-size:.7rem;letter-spacing:.08em}
   .contact .who-line{font-size:.68rem}
   .foot{font-size:.58rem;justify-content:flex-start}
 }
-
-/* --- very small phones --- */
 @media(max-width:380px){
   .brand{font-size:.68rem;letter-spacing:.14em}
   .hero h1{font-size:2.05rem}
 }
 
 
-/* ============================================================
-   10. A11Y — respect reduced-motion
-   ============================================================ */
+/* ============ 12. A11Y ============ */
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .hero .eyebrow,.scrollcue{opacity:1}
   .hero .lede{opacity:.78}
   .hero h1 .ln span{transform:none}
-  .row{opacity:1;transform:none}
 }
 </style>
 </head>
 <body>
 
-<!-- ============================ HEADER ============================ -->
+<!-- ============ HEADER ============ -->
 <header class="site-head">
-  <!-- TODO: replace the .cp box with the real Concept Plus logo SVG -->
   <div class="brand"><span class="cp">CP</span> CONCEPT&nbsp;PLUS</div>
   <div class="by">by Steve Nooshinfar</div>
 </header>
 
 
-<!-- ============================================================
-     HERO — hero.mp4 is the first thing they see
-     ============================================================ -->
+<!-- ============ HERO ============ -->
 <section class="hero">
   <video class="hero-media" autoplay muted loop playsinline preload="auto" aria-hidden="true">
     <source src="hero.mp4" type="video/mp4">
@@ -503,143 +367,141 @@ img,video{display:block;max-width:100%}
   <div class="hero-scrim"></div>
 
   <div class="hero-inner">
-    <div class="eyebrow">Film · Motion · 3D — for Concept Plus</div>
+    <div class="eyebrow">Hero Film · Proposal</div>
     <h1>
       <span class="ln"><span>Creative craft,</span></span>
       <span class="ln"><span>designed to <em>scale.</em></span></span>
     </h1>
-    <p class="lede">Four directions to put Concept Plus on screen — <b>the group, the vision, and every engine inside it.</b> Built for the whole ecosystem, not a single spot.</p>
+    <p class="lede">The direction is chosen. <b>Here's what we build, how it's made, and what it costs.</b></p>
   </div>
-  <div class="scrollcue">THE IDEAS</div>
+  <div class="scrollcue">THE FILM</div>
 </section>
 
 
-<!-- ============================================================
-     IDEAS — 4 DIRECTIONS
-     ------------------------------------------------------------
-     ▶ LOOPS SIT FLAT NEXT TO THIS FILE (no folder):
-         mediaidea-01-concept-film.mp4
-         mediaidea-02-the-door.mp4
-         mediaidea-03-sketch-to-world.mp4
-         mediaidea-04-house-and-home.mp4
-     SPEC: 1920×1080, 6–12s seamless loop, NO AUDIO, H.264, under ~4 MB.
-     ============================================================ -->
-<section class="section" id="ideas">
-  <div class="sec-head">
-    <h2>Four ways to tell one story.</h2>
-    <p class="note">Directions, not final films — each a different way to show who Concept Plus is, what it does, and where it's going.</p>
-  </div>
+<!-- ============ SELECTED DIRECTION ============ -->
+<section class="section" id="direction">
+  <div class="selected">
+    <div class="sel-tag">Selected direction · 04</div>
+    <div class="sel-kicker">The House &amp; The Home</div>
+    <h2 class="sel-title">From imagined, <em>to lived.</em></h2>
 
-  <div class="rows">
+    <div class="sel-media">
+      <div class="slot"><code>mediaidea-04-house-and-home.mp4</code></div>
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="mediaidea-04-house-and-home.mp4" type="video/mp4">
+      </video>
+    </div>
 
-    <!-- ---------- 01 · THE CONCEPT FILM ---------- -->
-    <article class="row">
-      <div class="r-num">01</div>
-      <div class="r-body">
-        <div class="r-kicker">The Concept Film</div>
-        <h3 class="r-title">It starts with a concept.</h3>
-        <p class="r-desc">A cinematic presentation of the holding itself — who Concept Plus is, what it does, and the vision behind it. From a blank page to a group with seven engines: development, real estate, marketing, media, hospitality, art, academy. Each one earns its moment on screen, all of it orchestrated from one core. Projects like Oystra appear as proof of the system — not the subject. Two to three minutes, narrated, graded matte and filmic. Never plastic, never "AI-made."</p>
+    <div class="sel-body">
+      <div>
+        <p class="pull">The feeling of House of CP, on film — <em>and the life it leads to.</em></p>
       </div>
-      <div class="r-media">
-        <div class="r-slot"><code>mediaidea-01-concept-film.mp4</code></div>
-        <video autoplay muted loop playsinline preload="metadata">
-          <source src="mediaidea-01-concept-film.mp4" type="video/mp4">
-        </video>
-        <span class="r-flag"><b>Look reference</b></span>
+      <div>
+        <p>We start close. Materials, texture, finish: stone, bronze, warm light — the details that separate a real space from a rendered one. Then the finished project. Then the people, and the room comes alive.</p>
+        <p style="margin-top:16px">As the camera travels, <b>each service switches on a zone</b> — development raises it, design dresses it, hospitality warms it, the academy trains the person who greets you. Oystra appears as proof of the system, not as the subject.</p>
+        <p style="margin-top:16px">This one isn't about explaining. <b>It's about how the place makes you feel.</b></p>
       </div>
-    </article>
-
-    <!-- ---------- 02 · THE DOOR ---------- -->
-    <article class="row">
-      <div class="r-num">02</div>
-      <div class="r-body">
-        <div class="r-kicker">The Door</div>
-        <h3 class="r-title">A door to the vision.</h3>
-        <p class="r-desc">One door standing in the void, then in nature — no walls, pure concept. Each time it opens, a different world Concept Plus builds: development, hospitality, art, the academy. Abstract, timeless, made to loop for years without ageing. CGI-grade — fully AI, or finished in 3D.</p>
-      </div>
-      <div class="r-media">
-        <div class="r-slot"><code>mediaidea-02-the-door.mp4</code></div>
-        <video autoplay muted loop playsinline preload="metadata">
-          <source src="mediaidea-02-the-door.mp4" type="video/mp4">
-        </video>
-        <span class="r-flag"><b>Look reference</b></span>
-      </div>
-    </article>
-
-    <!-- ---------- 03 · SKETCH TO WORLD ---------- -->
-    <article class="row">
-      <div class="r-num">03</div>
-      <div class="r-body">
-        <div class="r-kicker">Sketch to World</div>
-        <h3 class="r-title">One line becomes a home.</h3>
-        <p class="r-desc">The most visual of the four — no story to follow, just transformation you can't look away from. A single line mutates: into soft-body 3D form, into structure, into a lived space. Material shifts, light shifts, scale shifts. Bold Apple-grade type lands each service on the beat. Pure motion craft — orchestration, made visible.</p>
-      </div>
-      <div class="r-media">
-        <div class="r-slot"><code>mediaidea-03-sketch-to-world.mp4</code></div>
-        <video autoplay muted loop playsinline preload="metadata">
-          <source src="mediaidea-03-sketch-to-world.mp4" type="video/mp4">
-        </video>
-        <span class="r-flag"><b>Look reference</b></span>
-      </div>
-    </article>
-
-    <!-- ---------- 04 · THE HOUSE & THE HOME ---------- -->
-    <article class="row">
-      <div class="r-num">04</div>
-      <div class="r-body">
-        <div class="r-kicker">The House &amp; The Home</div>
-        <h3 class="r-title">From imagined, to lived.</h3>
-        <p class="r-desc">The feeling of House of CP, on film. We start close — materials, texture, finish: stone, bronze, warm light, the details that separate a real space from a rendered one. Then the finished project. Then the people, and the room comes alive. As the camera travels, each service switches on a zone — development raises it, design dresses it, hospitality warms it, the academy trains the person who greets you. This one isn't about explaining. It's about how the place makes you feel.<span class="r-split">Runs as one cinematic — or splits into a venue film + a living film.</span></p>
-      </div>
-      <div class="r-media">
-        <div class="r-slot"><code>mediaidea-04-house-and-home.mp4</code></div>
-        <video autoplay muted loop playsinline preload="metadata">
-          <source src="mediaidea-04-house-and-home.mp4" type="video/mp4">
-        </video>
-        <span class="r-flag"><b>Look reference</b></span>
-      </div>
-    </article>
-
-  </div>
-
-  <!-- ---------- the closing invitation ---------- -->
-  <div class="ideas-note">
-    <p>These are four starting points. <em>The limit is the sky.</em></p>
-    <p class="sub">Small examples of what's possible — not a menu. If none of them are quite it, that's useful too. Tell me what you see, and we'll build it. I'd love to hear from you.</p>
-  </div>
-</section>
-
-
-<!-- ============================ WHO ============================ -->
-<section class="section who">
-  <div class="wrap">
-    <div class="eyebrow">Who's behind it</div>
-    <h3>Directed and produced by Steve Nooshinfar.</h3>
-    <p>Creative Director in Dubai working in high-end cinematic AI film, motion design, and 3D advertising. I run the whole chain myself — <b>concept, script, storyboard, direction, AI/3D generation, edit</b> — so one taste holds the work from the first frame to the last. The discipline is consistent across every piece: matte, filmic, restrained — engineered to never look "AI-made."</p>
-    <div class="tags">
-      <span>Cinematic AI Film</span><span>Brand Films</span><span>3D / CGI</span><span>Motion Design</span><span>Direction</span><span>Storyboarding</span>
     </div>
   </div>
 </section>
 
 
-<!-- ============================================================
-     SHOWCASE — builds from the REEL array in the script below
-     ============================================================ -->
-<section class="section" id="work">
+<!-- ============ DELIVERABLES ============ -->
+<section class="section" id="deliverables">
   <div class="sec-head">
-    <h2>Selected work.</h2>
-    <p class="note">A small sample from years of work across film, 3D, motion and brand content — not the whole archive. Tap any frame to play.</p>
+    <h2>One film. Two masters.</h2>
+    <p class="note">Built for two different rooms — the screens that run all day, and the meetings where decisions get made.</p>
   </div>
-  <div id="reel"></div>
+
+  <div class="masters">
+    <article class="master">
+      <div class="m-let">A</div>
+      <h3>The Venue Cut</h3>
+      <div class="m-spec">2 minutes · silent</div>
+      <p>Built for the House of CP screens. No voice-over — the screens play muted all day, so the film carries itself on image, rhythm and type. Long enough to live behind a room without repeating itself.</p>
+    </article>
+
+    <article class="master">
+      <div class="m-let">B</div>
+      <h3>The Story Cut</h3>
+      <div class="m-spec">1 minute · voice-over + music</div>
+      <p>The sharp version. Voice-over and music, cut tight. For presentations, socials, investor meetings, and anywhere the story has to land in sixty seconds.</p>
+    </article>
+  </div>
 </section>
 
 
-<!-- ============================ CONTACT ============================ -->
+<!-- ============ PHASES ============ -->
+<section class="section" id="process">
+  <div class="sec-head">
+    <h2>How it's made.</h2>
+    <p class="note">Three phases. Nothing gets generated until the direction is signed off — so there are no surprises at the end.</p>
+  </div>
+
+  <div class="phases">
+    <article class="phase">
+      <div class="p-num">01</div>
+      <h3>Direction</h3>
+      <div>
+        <p>Story, script, voice-over, mood board, storyboard. Everything that decides what the film is, before a single frame exists.</p>
+        <span class="gate">→ Your approval before we shoot a frame</span>
+      </div>
+    </article>
+
+    <article class="phase">
+      <div class="p-num">02</div>
+      <h3>Production</h3>
+      <div>
+        <p>Image and video generation, assembly, first cut. You see the film taking shape while there's still room to steer it.</p>
+      </div>
+    </article>
+
+    <article class="phase">
+      <div class="p-num">03</div>
+      <h3>Finishing</h3>
+      <div>
+        <p>Cleanup, regeneration of missing beats, grade, sound, and the final masters — delivered ready to run.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+
+<!-- ============ INVESTMENT ============ -->
+<section class="section invest" id="investment">
+  <div class="price-box">
+    <div class="price-fig">
+      <div class="eyebrow">Investment</div>
+      <div class="fig"><span class="cur">AED</span>11,000</div>
+      <p class="sub">Complete — script through final masters. Both cuts included. No production crew, no location days, no hidden lines.</p>
+    </div>
+
+    <dl class="terms">
+      <div class="term"><dt>Deliverables</dt><dd>2 masters — 2 min silent · 1 min VO</dd></div>
+      <div class="term"><dt>Revisions</dt><dd>2 rounds included</dd></div>
+      <div class="term"><dt>Timeline</dt><dd>20 days from approved script</dd></div>
+      <div class="term"><dt>Payment</dt><dd>50% to start · 50% on delivery</dd></div>
+      <div class="term"><dt>Additional rounds</dt><dd>AED 1,500 each</dd></div>
+    </dl>
+  </div>
+</section>
+
+
+<!-- ============ WHO ============ -->
+<section class="section who">
+  <div class="wrap">
+    <div class="eyebrow">Who's behind it</div>
+    <h3>Directed and produced by Steve Nooshinfar.</h3>
+    <p>Creative Director in Dubai working in high-end cinematic AI film, motion design, and 3D advertising. I run the whole chain myself — <b>concept, script, storyboard, direction, AI/3D generation, edit</b> — so one taste holds the work from the first frame to the last. Matte, filmic, restrained — engineered to never look "AI-made."</p>
+  </div>
+</section>
+
+
+<!-- ============ CONTACT ============ -->
 <section class="section contact" id="contact">
   <div class="wrap">
     <div class="eyebrow">Next step</div>
-    <h2>Let's build what <em>endures.</em></h2>
+    <h2>Say go, and we <em>start.</em></h2>
     <div class="who-line"><b>Steve Nooshinfar</b> — Creative Director · Film, Motion &amp; 3D</div>
     <div class="cta">
       <a class="primary" href="https://wa.me/971562450103" target="_blank" rel="noopener">WhatsApp&nbsp;→ +971 56 245 0103</a>
@@ -649,154 +511,20 @@ img,video{display:block;max-width:100%}
 </section>
 
 
-<!-- ============================ FOOTER ============================ -->
+<!-- ============ FOOTER ============ -->
 <footer class="foot">
   <div>© 2026 <b>Steve Nooshinfar</b></div>
   <div>Prepared for <b>Concept Plus</b> · From Vision to Legacy</div>
 </footer>
 
-
 <script>
-/* ============================================================
-   SHOWCASE DATA
-   ------------------------------------------------------------
-   TO EDIT THE REEL: change the objects below. Nothing else.
-     cat   = category heading
-     role  = one line on what Steve did across this body of work
-     id    = the YouTube video ID (the bit after /embed/)
-     t     = title shown on the tile
-     r     = "wide" (16:9) or "tall" (9:16)
-   Order here = exact order on the page.
-   ============================================================ */
-const REEL = [
-
-  { cat:"Real Estate Films",
-    role:"Start to finish — script, direction, production and delivery of the finished project.",
-    items:[
-      {id:"YFNEUWUVgA4", t:"Real Estate Film",                r:"wide"},
-      {id:"2uqjV-PQENE", t:"Jumeirah Village Circle Villa",   r:"tall"},
-      {id:"ucz9OlvG2Ys", t:"4D Social",                       r:"wide"},
-      {id:"__ISm4kGXrk", t:"The Sanctuary — Cinematic Short", r:"wide"},
-      {id:"WENb01ppBHU", t:"Signal",                          r:"tall"},
-  ]},
-
-  { cat:"3D, Music & Ads",
-    role:"Production and post-production team, and 3D artist.",
-    items:[
-      {id:"uKr01stIqCI", t:"Urban Twin",                    r:"wide"},
-      {id:"W9HiP_tBXZo", t:"Serco Middle East Strategy",    r:"wide"},
-      {id:"75w5ShucZ-E", t:"Tohi — Bargardi (ft. Naad)",    r:"wide"},
-      {id:"t8oOzV3pfDQ", t:"Dubizzle — Ad 2023",            r:"wide"},
-      {id:"HZM9vH2tifg", t:"Baran — Sargardoon",            r:"wide"},
-      {id:"-ZNv30g2oY0", t:"Baran — Mah Bash",              r:"wide"},
-  ]},
-
-  { cat:"Pixflow",
-    role:"QA, motion designer and technical lead.",
-    items:[
-      {id:"2LDtstdJIAg", t:"We Are Pixflow",                            r:"wide"},
-      {id:"yA-3wV7GtTc", t:"Cyberpunk HUD Elements — After Effects",    r:"wide"},
-      {id:"bui_pqOlqkU", t:"Cyberpunk Titles — VFX Breakdown",          r:"wide"},
-  ]},
-
-  { cat:"Motion, Editing & Typography",
-    role:"Side projects and personal work.",
-    items:[
-      {id:"exJfnSs41kQ", t:"Final",                                     r:"wide"},
-      {id:"6fcqvObx3qY", t:"2D & Typography — Motion Design Reel 2023", r:"wide"},
-      {id:"BdnEC-W6mUs", t:"3D Showreel",                               r:"wide"},
-  ]},
-
-];
-
-
-/* ------------------------------------------------------------
-   Build a single video tile.
-   Uses a "facade": show the YouTube thumbnail, load the real
-   iframe only on click. Keeps the page fast on phones instead
-   of booting every player at once.
-   ------------------------------------------------------------ */
-function makeTile(item){
-  const el = document.createElement("div");
-  el.className = "vid " + item.r;
-  el.setAttribute("role","button");
-  el.setAttribute("tabindex","0");
-  el.setAttribute("aria-label","Play: " + item.t);
-
-  el.innerHTML =
-    `<img loading="lazy"
-          src="https://i.ytimg.com/vi/${item.id}/maxresdefault.jpg"
-          onerror="this.src='https://i.ytimg.com/vi/${item.id}/hqdefault.jpg'"
-          alt="">
-     <span class="play"></span>
-     <span class="cap">${item.t}</span>`;
-
-  const play = () => {
-    if(el.dataset.on) return;
-    el.dataset.on = "1";
-    el.innerHTML =
-      `<iframe src="https://www.youtube.com/embed/${item.id}?autoplay=1&rel=0"
-               title="${item.t}"
-               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-               referrerpolicy="strict-origin-when-cross-origin"
-               allowfullscreen></iframe>`;
-  };
-
-  el.addEventListener("click", play);
-  el.addEventListener("keydown", e => {
-    if(e.key === "Enter" || e.key === " "){ e.preventDefault(); play(); }
-  });
-  return el;
-}
-
-/* ---------- render every category, in order ---------- */
-const reelEl = document.getElementById("reel");
-
-REEL.forEach(group => {
-  const cat = document.createElement("div");
-  cat.className = "cat";
-
-  const head = document.createElement("div");
-  head.className = "cat-h";
-  head.innerHTML =
-    `<div class="top">
-       <div class="eyebrow">${group.cat}</div>
-       <div class="rule"></div>
-       <div class="count">${String(group.items.length).padStart(2,"0")}</div>
-     </div>
-     ${group.role ? `<p class="role">${group.role}</p>` : ""}`;
-  cat.appendChild(head);
-
-  const g = document.createElement("div");
-  g.className = "grid";
-  group.items.forEach(i => g.appendChild(makeTile(i)));
-  cat.appendChild(g);
-
-  reelEl.appendChild(cat);
-});
-
-
-/* ------------------------------------------------------------
-   Hide the filename hint in any idea well whose video actually
-   loads. If a file is missing or fails, the hint stays visible
-   so it's obvious which file to drop in.
-   ------------------------------------------------------------ */
-document.querySelectorAll(".r-media video").forEach(v => {
-  const flag = () => v.closest(".r-media").classList.add("has-video");
-  if(v.readyState >= 2) flag();                 /* already loaded from cache */
+/* Hide the filename hint once the loop actually loads.
+   If the file is missing, the hint stays — so it's obvious what to fix. */
+document.querySelectorAll(".sel-media video").forEach(v => {
+  const flag = () => v.closest(".sel-media").classList.add("has-video");
+  if(v.readyState >= 2) flag();
   v.addEventListener("loadeddata", flag);
 });
-
-
-/* ------------------------------------------------------------
-   Scroll-reveal for the idea rows. One-shot.
-   ------------------------------------------------------------ */
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
-  });
-}, { threshold:.2 });
-document.querySelectorAll(".row").forEach(r => io.observe(r));
 </script>
 </body>
 </html>
